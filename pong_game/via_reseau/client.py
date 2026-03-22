@@ -17,14 +17,15 @@ GREEN = (0,255,0)
 display_width = 800
 display_height = 600
 
-clock = pygame.time.Clock()
+clock = pygame.time.Clock() 
 
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 
 clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 clientsocket.connect(("127.0.0.1", 5555))
 
-
+# it will receive the data from the server and display the game on the screen, 
+# and send the player's input to the server
 def message_display(text,x,y):
     largeText = pygame.font.Font('freesansbold.ttf',45)
     TextSurf, TextRect = text_objects(str(text), largeText, GREEN)
@@ -33,16 +34,20 @@ def message_display(text,x,y):
 
     pygame.display.update()
 
+# this function will create a text surface and return the surface 
+# and the rectangle of the surface
 def text_objects(text, font, colour):
     textSurface = font.render(text, True, colour)
     return textSurface, textSurface.get_rect()
 
-
+# this function will receive the data from the server and 
+# return the data as a list
 def recieve_data():
     data = clientsocket.recv(1024)
     data = pickle.loads(data)
 
     return data
+
 
 def draw_paddles(x,y,p):
     if p == 1:
@@ -84,10 +89,6 @@ def display():
         clientsocket.send(data_arr)
         message_display(info[4], 250, 300)
         message_display(info[5], 550, 300)
-
-
-    #info = [player_1_y, player_2_y, ball_y, ball_x, score_1, score_2]
-
 
 display()
 
