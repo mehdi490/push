@@ -49,8 +49,7 @@ def main():
         elif point == 1:
             geek2Score += 1
         
-        if point:   # Someone has scored a point and the
-          # ball is out of bounds. So, we reset it's position
+        if point:
             ball.reset()
         
         geek1.display()

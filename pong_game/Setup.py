@@ -10,7 +10,9 @@ GREEN = (0, 255, 0)
 
 WIDTH, HEIGHT = 900, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+print(screen)
+
 pygame.display.set_caption("Ping_pong")
 
 clock = pygame.time.Clock()
-FPS = 30
+#FPS = 30
